@@ -2,19 +2,21 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserLogin } from '../../models/user-login';
-import { UserToken } from '../../models/user-token';
-import { Router } from '@angular/router';
+import { authTokenKey, UserToken } from '../../models/user-token';
+import { Router, RouterLink } from '@angular/router';
+import { LoggedInStore } from '../../stores/logged-in.store';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  private readonly router = inject(Router);
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
+  private readonly loggedInStore = inject(LoggedInStore);
 
   loginFormGroup = this.formBuilder.group({
     username: [''],
@@ -27,6 +29,10 @@ export class LoginComponent {
 
       this.authService.login(user as UserLogin).subscribe({
         next: (response: UserToken) => {
+          localStorage.setItem(authTokenKey, response.token || '');
+
+          this.loggedInStore.set(true);
+
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
