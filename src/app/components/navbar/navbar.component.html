@@ -3,36 +3,31 @@
     <div class="row align-content-center">
       <div class="col d-flex align-items-center">
         <a class="navbar-brand" routerLink="dashboard">
-          <img
-            src="cashflow-logo.jpg"
-            style="width: 100px; height: 50px; object-fit: cover"
-            alt=""
-            srcset=""
-          />
+          <h1>Cashflow</h1>
         </a>
       </div>
+      @if (userIsLoggedIn()) {
+        <div class="col-2 d-flex align-items-center">
+          <p class="fs-5 m-0 p-0">
+            Saldo: {{ totalCashFlow() | currency: "BRL" }}
+          </p>
+        </div>
+      }
       <div class="col-2 d-flex align-items-center">
-        <p class="fs-5 m-0 p-0">
-          Saldo: {{ totalCashFlow() | currency: "BRL" }}
-        </p>
-      </div>
-      <div class="col-2 d-flex align-items-center">
-        <a class="btn btn-link" routerLink="login">
-          <div class="row g-1 justify-content-center align-items-center">
-            <div class="col">
-              <i class="bi bi-person" style="font-size: 20px"></i>
+        @if (userIsLoggedIn()) {
+          <button type="button" class="btn btn-link" (click)="logout()">
+            Sair
+          </button>
+        } @else {
+          <a class="btn btn-link" routerLink="login">
+            <div class="row g-1 justify-content-center align-items-center">
+              <div class="col">
+                <i class="bi bi-person" style="font-size: 20px"></i>
+              </div>
+              <div class="col">Entrar</div>
             </div>
-            <div class="col">
-              <span>
-                @if (userIsLoggedIn) {
-                  Sair
-                } @else {
-                  Entrar
-                }
-              </span>
-            </div>
-          </div>
-        </a>
+          </a>
+        }
       </div>
     </div>
   </div>

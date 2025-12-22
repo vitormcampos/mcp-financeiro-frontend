@@ -1,9 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CashflowStore } from '../../stores/cashflow.store';
+import { LoggedInStore } from '../../stores/logged-in.store';
 
 @Component({
   selector: 'app-navbar',
@@ -12,10 +13,12 @@ import { CashflowStore } from '../../stores/cashflow.store';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+  private readonly loggedInStore = inject(LoggedInStore);
   private readonly cashFlowStore = inject(CashflowStore);
 
-  userIsLoggedIn = this.authService.isLoggedIn();
+  userIsLoggedIn = toSignal(this.loggedInStore.get());
 
   cashFlows = toSignal(this.cashFlowStore.get(), { initialValue: [] });
 
@@ -36,4 +39,12 @@ export class NavbarComponent {
 
     return totalIncome - totalExpense - totalInvestment;
   });
+
+  logout() {
+    this.authService.logout();
+
+    this.loggedInStore.set(false);
+
+    this.router.navigate(['/login']);
+  }
 }
