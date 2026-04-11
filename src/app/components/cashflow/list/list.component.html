@@ -1,23 +1,20 @@
-<div class="container">
-  @if (cashFlows$ | async; as cashFlows) {
-    <div class="row justify-content-between mb-2">
-      <div class="col-12 col-md-4 bg-white">
-        <div class="">
-          <h3>Fluxo de caixa</h3>
-        </div>
-      </div>
-      <div class="col bg-white">
-        <div class="text-end">
-          <div class="d-flex align-items-center"></div>
-          <app-filter />
-          <app-upsert />
-        </div>
-      </div>
+@if (cashFlows$ | async; as cashFlows) {
+  <div class="list-header">
+    <h3 class="list-title">
+      <i class="bi bi-receipt"></i>
+      Fluxo de Caixa
+    </h3>
+    <div class="list-actions">
+      <app-filter />
+      <app-upsert />
     </div>
-    <div class="table-responsive">
-      <table class="table table-striped-columns table-sm">
+  </div>
+
+  @if (cashFlows.length > 0) {
+    <div class="table-container">
+      <table class="table">
         <thead>
-          <tr class="table-primary">
+          <tr>
             <th>#</th>
             <th scope="col">Descrição</th>
             <th scope="col">Valor</th>
@@ -33,19 +30,30 @@
               </td>
               <td>{{ cashFlow.description }}</td>
               <td>
-                {{ cashFlow.amount | currency: "BRL" }}
+                <span class="amount" [class]="cashFlow.type?.toLowerCase()">
+                  {{ cashFlow.amount | currency: 'BRL' }}
+                </span>
               </td>
               <td>
-                {{ cashFlow.status === "PAID" ? "Pago" : "Pendente" }}
+                <span class="status-badge" [class]="cashFlow.status?.toLowerCase()">
+                  {{ cashFlow.status === 'PAID' ? 'Pago' : 'Pendente' }}
+                </span>
               </td>
               <td>
-                {{
-                  cashFlow.type === "INCOME"
-                    ? "Receita"
-                    : cashFlow.type === "EXPENSE"
-                      ? "Despesa"
-                      : "Investimento"
-                }}
+                <span class="type-badge" [class]="cashFlow.type?.toLowerCase()">
+                  <i class="bi" [class]="{
+                    'bi-arrow-down-circle': cashFlow.type === 'INCOME',
+                    'bi-arrow-up-circle': cashFlow.type === 'EXPENSE',
+                    'bi-graph-up-arrow': cashFlow.type === 'INVESTMENT'
+                  }"></i>
+                  {{
+                    cashFlow.type === 'INCOME'
+                      ? 'Receita'
+                      : cashFlow.type === 'EXPENSE'
+                        ? 'Despesa'
+                        : 'Investimento'
+                  }}
+                </span>
               </td>
             </tr>
           }
@@ -53,6 +61,14 @@
       </table>
     </div>
   } @else {
-    <p>Loading cash flows...</p>
+    <div class="empty-state">
+      <i class="bi bi-inbox"></i>
+      <p>Nenhuma transação encontrada</p>
+    </div>
   }
-</div>
+} @else {
+  <div class="empty-state">
+    <i class="bi bi-arrow-clockwise"></i>
+    <p>Carregando transações...</p>
+  </div>
+}

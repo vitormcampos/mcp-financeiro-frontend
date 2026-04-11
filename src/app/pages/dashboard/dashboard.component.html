@@ -1,36 +1,49 @@
-<div class="row" style="min-height: 95vh">
-  <div class="col">
-    <div class="container-fluid">
-      <div class="row justify-content-center my-5">
-        <div class="col-3">
-          <div class="bg-white rounded-3 p-3">
-            <p>Receita</p>
-            <h4>{{ totalIncome() | currency: "BRL" }}</h4>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="bg-white rounded-3 p-3">
-            <p>Despesa</p>
-            <h4>{{ totalExpense() | currency: "BRL" }}</h4>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="bg-white rounded-3 p-3">
-            <p>Investimento</p>
-            <h4>{{ totalInvestment() | currency: "BRL" }}</h4>
-          </div>
-        </div>
+<div class="dashboard-container">
+  <section class="summary-cards">
+    <div class="card-summary">
+      <div class="card-icon income">
+        <i class="bi bi-arrow-down-circle"></i>
       </div>
-
-      <div class="row justify-content-center mt-5">
-        <div class="col-12 col-md-9">
-          <div class="bg-white rounded-3 p-3">
-            <app-list />
-          </div>
-        </div>
+      <div class="card-content">
+        <span class="card-label">Receitas</span>
+        <span class="card-value">{{ totalIncome() | currency: 'BRL' }}</span>
       </div>
     </div>
-  </div>
-</div>
 
-<app-chat-ai />
+    <div class="card-summary">
+      <div class="card-icon expense">
+        <i class="bi bi-arrow-up-circle"></i>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Despesas</span>
+        <span class="card-value expense-value">{{ totalExpense() | currency: 'BRL' }}</span>
+      </div>
+    </div>
+
+    <div class="card-summary">
+      <div class="card-icon investment">
+        <i class="bi bi-graph-up-arrow"></i>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Investimentos</span>
+        <span class="card-value investment-value">{{ totalInvestment() | currency: 'BRL' }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="main-content">
+    <div class="content-card">
+      <div class="card-header">
+        <h2 class="card-title">
+          <i class="bi bi-list-ul"></i>
+          Transações
+        </h2>
+      </div>
+      <div class="card-body">
+        <app-list />
+      </div>
+    </div>
+  </section>
+
+  <app-chat-ai [floating]="true" />
+</div>

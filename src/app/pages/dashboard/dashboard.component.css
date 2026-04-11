@@ -1,0 +1,130 @@
+.dashboard-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.card-summary:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+}
+
+.card-icon.income {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.card-icon.expense {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.card-icon.investment {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-label {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.card-value.expense-value {
+  color: #ef4444;
+}
+
+.card-value.investment-value {
+  color: #8b5cf6;
+}
+
+.main-content {
+  margin-bottom: 2rem;
+}
+
+.content-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin: 0;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card-summary {
+    padding: 1rem;
+  }
+
+  .card-value {
+    font-size: 1.25rem;
+  }
+}

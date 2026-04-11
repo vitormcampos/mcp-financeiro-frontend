@@ -1,0 +1,91 @@
+.btn-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-filter:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.5rem;
+}
+
+.modal-title {
+  color: #e5e7eb;
+  font-weight: 600;
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
+.modal-body {
+  background: #1a1a2e;
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  background: #1a1a2e;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.5rem;
+}
+
+.form-control,
+.form-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  padding: 0.625rem 0.875rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #8b5cf6;
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.form-control::placeholder {
+  color: #6b7280;
+}
+
+.form-select option {
+  background: #1a1a2e;
+  color: #e5e7eb;
+}
+
+.input-group .btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+}
+
+.input-group .btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+}
+
+.btn-outline-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+}
+
+.btn-outline-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}

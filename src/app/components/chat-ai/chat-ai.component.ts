@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   inject,
+  Input,
   OnDestroy,
   OnInit,
   signal,
@@ -19,6 +20,8 @@ import { MarkdownComponent } from 'ngx-markdown';
 })
 export class ChatAiComponent implements OnInit, OnDestroy {
   chatService = inject(ChatService);
+
+  @Input() floating = false;
 
   showWindow = signal(false);
   chats = signal<ChatMessage[]>([]);
