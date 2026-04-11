@@ -1,0 +1,95 @@
+<div class="home-container">
+  <section class="hero">
+    <div class="hero-content">
+      <div class="logo-badge">
+        <span class="logo-icon">💵</span>
+        <span class="logo-text">CashFlow AI</span>
+      </div>
+      <h1 class="hero-title">
+        Seu sistema de <span class="highlight">fluxo de caixa</span> pessoal com <span class="ai-highlight">inteligência artificial</span>
+      </h1>
+      <p class="hero-subtitle">
+        Gerencie suas finanças de forma inteligente. Consulta, cadastre e altere registros simplesmente conversando com nossa IA integrada ao seu banco de dados.
+      </p>
+      <div class="hero-cta">
+        <a routerLink="/login" class="btn btn-primary">Começar Agora</a>
+        <a routerLink="/register" class="btn btn-secondary">Criar Conta</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="chat-preview">
+        <div class="chat-header">
+          <span class="chat-avatar">🤖</span>
+          <span class="chat-title">CashFlow AI Assistant</span>
+        </div>
+        <div class="chat-messages">
+          <div class="message user">
+            <span class="msg-text">Quanto gastei com alimentação esse mês?</span>
+          </div>
+          <div class="message bot">
+            <span class="msg-text">Você gastou <strong>R$ 1.250,00</strong> com alimentação em março. Principais despesas:...</span>
+          </div>
+          <div class="message user">
+            <span class="msg-text">Cadastra uma despesa de R$ 150 de combustível</span>
+          </div>
+          <div class="message bot">
+            <span class="msg-text">✓ Despesa cadastrada com sucesso!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">O que você pode fazer</h2>
+    <div class="features-grid">
+      @for (feature of features; track feature.title) {
+        <div class="feature-card">
+          <span class="feature-icon">{{ feature.icon }}</span>
+          <h3 class="feature-title">{{ feature.title }}</h3>
+          <p class="feature-description">{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="benefits">
+    <div class="benefits-content">
+      <h2 class="section-title">Por que usar o CashFlow AI?</h2>
+      <ul class="benefits-list">
+        @for (benefit of benefits; track benefit) {
+          <li class="benefit-item">
+            <span class="benefit-check">✓</span>
+            <span>{{ benefit }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="benefits-visual">
+      <div class="stats-card">
+        <div class="stat">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Online</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">IA</span>
+          <span class="stat-label">Integrada</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">🔒</span>
+          <span class="stat-label">Seguro</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-title">Pronto para controlar suas finanças?</h2>
+    <p class="cta-subtitle">Comece agora mesmo é gratuit.</p>
+    <a routerLink="/register" class="btn btn-primary btn-large">Criar Conta Grátis</a>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 CashFlow AI - Sistema de Fluxo de Caixa Pessoal com Inteligência Artificial</p>
+  </footer>
+</div>
