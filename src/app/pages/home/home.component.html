@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="hero-content">
       <div class="logo-badge">
-        <span class="logo-icon">💵</span>
+        <i class="bi bi-cash-stack logo-icon"></i>
         <span class="logo-text">CashFlow AI</span>
       </div>
       <h1 class="hero-title">
@@ -19,7 +19,7 @@
     <div class="hero-visual">
       <div class="chat-preview">
         <div class="chat-header">
-          <span class="chat-avatar">🤖</span>
+          <i class="bi bi-robot chat-avatar"></i>
           <span class="chat-title">CashFlow AI Assistant</span>
         </div>
         <div class="chat-messages">
@@ -33,7 +33,8 @@
             <span class="msg-text">Cadastra uma despesa de R$ 150 de combustível</span>
           </div>
           <div class="message bot">
-            <span class="msg-text">✓ Despesa cadastrada com sucesso!</span>
+            <i class="bi bi-check-circle"></i>
+            <span class="msg-text">Despesa cadastrada com sucesso!</span>
           </div>
         </div>
       </div>
@@ -45,7 +46,7 @@
     <div class="features-grid">
       @for (feature of features; track feature.title) {
         <div class="feature-card">
-          <span class="feature-icon">{{ feature.icon }}</span>
+          <i class="bi feature-icon" [class]="feature.iconClass"></i>
           <h3 class="feature-title">{{ feature.title }}</h3>
           <p class="feature-description">{{ feature.description }}</p>
         </div>
@@ -59,7 +60,7 @@
       <ul class="benefits-list">
         @for (benefit of benefits; track benefit) {
           <li class="benefit-item">
-            <span class="benefit-check">✓</span>
+            <i class="bi bi-check-circle benefit-check"></i>
             <span>{{ benefit }}</span>
           </li>
         }
@@ -72,11 +73,11 @@
           <span class="stat-label">Online</span>
         </div>
         <div class="stat">
-          <span class="stat-value">IA</span>
+          <i class="bi bi-cpu stat-value"></i>
           <span class="stat-label">Integrada</span>
         </div>
         <div class="stat">
-          <span class="stat-value">🔒</span>
+          <i class="bi bi-shield-lock stat-value"></i>
           <span class="stat-label">Seguro</span>
         </div>
       </div>

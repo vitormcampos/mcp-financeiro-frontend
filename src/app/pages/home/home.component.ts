@@ -12,22 +12,22 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent {
   features = [
     {
-      icon: '💰',
+      iconClass: 'bi-cash-stack',
       title: 'Fluxo de Caixa',
       description: 'Gerencie suas receitas, despesas e investimentos de forma simples e organizadas',
     },
     {
-      icon: '🤖',
+      iconClass: 'bi-chat-square-dots',
       title: 'Chat AI',
-      description: 'Consulte, cadastre e alterations registros através de conversación natural com IA',
+      description: 'Consulte, cadastre e altere registros através de conversa natural com IA',
     },
     {
-      icon: '📊',
+      iconClass: 'bi-bar-chart-line',
       title: 'Relatórios',
       description: 'Visualize dashboards e análises detalhadas das suas finanças pessoais',
     },
     {
-      icon: '🔒',
+      iconClass: 'bi-shield-lock',
       title: 'Segurança',
       description: 'Seus dados protegidos com autenticação segura e criptografia',
     },

@@ -1,34 +1,40 @@
-<nav class="navbar bg-body-tertiary">
-  <div class="container-fluid d-block">
-    <div class="row align-content-center">
-      <div class="col d-flex align-items-center">
-        <a class="navbar-brand" routerLink="dashboard">
-          <h1>Cashflow</h1>
-        </a>
-      </div>
-      @if (userIsLoggedIn()) {
-        <div class="col-2 d-flex align-items-center">
-          <p class="fs-5 m-0 p-0">
-            Saldo: {{ totalCashFlow() | currency: "BRL" }}
-          </p>
-        </div>
-      }
-      <div class="col-2 d-flex align-items-center">
-        @if (userIsLoggedIn()) {
-          <button type="button" class="btn btn-link" (click)="logout()">
-            Sair
-          </button>
-        } @else {
-          <a class="btn btn-link" routerLink="login">
-            <div class="row g-1 justify-content-center align-items-center">
-              <div class="col">
-                <i class="bi bi-person" style="font-size: 20px"></i>
-              </div>
-              <div class="col">Entrar</div>
-            </div>
-          </a>
-        }
-      </div>
+<nav class="navbar">
+  <a routerLink="/" class="brand">
+    <i class="bi bi-cash-stack brand-icon"></i>
+    <span class="brand-text">CashFlow AI</span>
+  </a>
+
+  @if (userIsLoggedIn()) {
+    <div class="nav-balance">
+      <span class="balance-label">Saldo</span>
+      <span
+        class="balance-value"
+        [class.positive]="totalCashFlow() >= 0"
+        [class.negative]="totalCashFlow() < 0"
+      >
+        {{ totalCashFlow() | currency: "BRL" }}
+      </span>
     </div>
+  }
+
+  <div class="nav-actions">
+    @if (userIsLoggedIn()) {
+      <a routerLink="dashboard" class="nav-link" routerLinkActive="active">
+        <i class="bi bi-grid-1x2"></i>
+        <span>Dashboard</span>
+      </a>
+      <button class="nav-link btn-logout" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Sair</span>
+      </button>
+    } @else {
+      <a routerLink="login" class="nav-link">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Entrar</span>
+      </a>
+      <a routerLink="register" class="nav-link btn-register">
+        <span>Criar Conta</span>
+      </a>
+    }
   </div>
 </nav>
