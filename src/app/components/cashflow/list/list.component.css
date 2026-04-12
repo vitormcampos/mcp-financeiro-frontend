@@ -13,8 +13,15 @@
   gap: 0.5rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #e5e7eb;
   margin: 0;
+}
+
+body.dark-mode .list-title {
+  color: #e5e7eb;
+}
+
+body.light-mode .list-title {
+  color: #1e293b;
 }
 
 .list-actions {
@@ -30,12 +37,9 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  color: #e5e7eb;
 }
 
 .table thead th {
-  background: rgba(139, 92, 246, 0.1);
-  color: #a5b4fc;
   font-weight: 600;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -49,19 +53,14 @@
   transition: background 0.2s ease;
 }
 
-.table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
 .table tbody td {
   padding: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: #d1d5db;
 }
 
 .amount {
   font-weight: 600;
-  font-family: 'Segoe UI', system-ui, monospace;
+  font-family: "Segoe UI", system-ui, monospace;
 }
 
 .amount.income {

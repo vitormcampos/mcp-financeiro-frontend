@@ -6,11 +6,18 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
   min-height: 100vh;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 a {
@@ -106,6 +113,24 @@ body.light-mode .form-control::placeholder {
   color: #94a3b8;
 }
 
+body.dark-mode .table {
+  color: #1e293b;
+}
+
+body.dark-mode .table thead th {
+  background: rgba(139, 92, 246, 0.1);
+  color: #fff;
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .table tbody tr:hover {
+  background: #ede9fa;
+}
+
+body.dark-mode .table tbody td {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
 body.light-mode .table {
   color: #1e293b;
 }
@@ -155,7 +180,11 @@ body.light-mode .chat-window {
 }
 
 body.light-mode .chat-header {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(99, 102, 241, 0.1)
+  );
 }
 
 body.light-mode .chat-title {
@@ -208,6 +237,12 @@ body.light-mode .welcome-message p {
   color: #475569;
 }
 
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+  background: #17172b;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
 body.light-mode .modal-header,
 body.light-mode .modal-footer {
   background: #f8fafc;
@@ -226,4 +261,8 @@ body.light-mode .form-select {
   background: rgba(0, 0, 0, 0.05);
   border-color: rgba(0, 0, 0, 0.1);
   color: #1e293b;
+}
+
+body.dark-mode .btn-close {
+  filter: invert(1);
 }

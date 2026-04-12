@@ -18,7 +18,11 @@
 }
 
 .modal-header {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1),
+    rgba(99, 102, 241, 0.1)
+  );
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1rem 1.5rem;
 }
@@ -26,10 +30,6 @@
 .modal-title {
   color: #e5e7eb;
   font-weight: 600;
-}
-
-.btn-close {
-  filter: invert(1);
 }
 
 .modal-body {
