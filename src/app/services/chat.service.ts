@@ -19,7 +19,7 @@ export class ChatService {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
         accessTokenFactory: () => localStorage.getItem(authTokenKey) || '',
-      }) // 🔧 Ajuste para sua URL real
+      })
       .withAutomaticReconnect()
       .build();
 

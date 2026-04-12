@@ -25,11 +25,13 @@ export class ChatAiComponent implements OnInit, OnDestroy {
 
   showWindow = signal(false);
   chats = signal<ChatMessage[]>([]);
+  isLoading = false;
 
   chatWindowElement = viewChild.required<ElementRef>('chatWindow');
 
   promptSub = this.chatService.prompt$.subscribe((prompt) => {
     this.addMessage({ content: prompt, origin: 'agent' });
+    this.isLoading = false;
   });
 
   ngOnInit() {
@@ -41,26 +43,37 @@ export class ChatAiComponent implements OnInit, OnDestroy {
   }
 
   addMessage(message: ChatMessage) {
-    this.chats.update((old) => {
-      return [...old, message];
-    });
+    this.chats.update((old) => [...old, message]);
+    setTimeout(() => this.scrollToBottom(), 100);
+  }
+
+  sendQuickPrompt(prompt: string) {
+    this.addMessage({ content: prompt, origin: 'user' });
+    this.isLoading = true;
+    this.chatService.sendPrompt(prompt, () => this.scrollToBottom());
   }
 
   submitMessage(f: NgForm) {
     const message = f.control.get('userMessage')?.value;
+    if (!message?.trim()) return;
 
+    this.isLoading = true;
     this.addMessage({ content: message, origin: 'user' });
+    this.chatService.sendPrompt(message, () => {
+      this.isLoading = false;
+      this.scrollToBottom();
+    });
+    f.resetForm();
+  }
 
-    const callbackFunction = () => {
-      this.chatWindowElement()?.nativeElement.scrollTo({
-        top: this.chatWindowElement()?.nativeElement.scrollHeight,
+  private scrollToBottom() {
+    const el = this.chatWindowElement();
+    if (el) {
+      el.nativeElement.scrollTo({
+        top: el.nativeElement.scrollHeight,
         behavior: 'smooth',
       });
-    };
-
-    this.chatService.sendPrompt(message, callbackFunction);
-
-    f.resetForm();
+    }
   }
 
   ngOnDestroy(): void {

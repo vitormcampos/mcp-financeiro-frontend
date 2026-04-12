@@ -1,50 +1,91 @@
-<div class="chatbot-widget">
-  <button class="chat-toggle" (click)="toggleWindow()">
-    <i
-      class="bi bi-chat-left-dots-fill"
-      style="color: white; font-size: 22px"
-    ></i>
-    <div class="notification-badge">New</div>
+<div class="chatbot-widget" [class.floating]="floating">
+  <button class="chat-toggle" (click)="toggleWindow()" [class.active]="showWindow()">
+    <i class="bi" [class]="showWindow() ? 'bi-x-lg' : 'bi-chat-quote'"></i>
+    @if (!showWindow()) {
+      <span class="pulse-dot"></span>
+    }
   </button>
-  <div class="chat-window" [class.show]="showWindow()">
-    <div class="chat-header">
-      <img class="bot-avatar" src="cashflow-logo.jpg" alt="bot" />
-      <div class="chat-info">
-        <h3 id="chatTitle">CashFlow AI</h3>
-        <p>Online now</p>
-      </div>
-    </div>
-    <div class="chat-messages" #chatWindow>
-      @for (message of chats(); track $index) {
-        @if (message.origin == "user") {
-          <div class="message user">
-            <div class="message-content">
-              {{ message.content }}
-            </div>
+
+  @if (floating) {
+    <div class="chat-window" [class.show]="showWindow()">
+      <div class="chat-header">
+        <div class="chat-brand">
+          <i class="bi bi-cash-stack brand-icon"></i>
+          <div class="chat-info">
+            <h3>CashFlow AI</h3>
+            <span class="status-online">
+              <i class="bi bi-patch-check-fill"></i>
+              Online
+            </span>
           </div>
-        } @else {
+        </div>
+        <button class="btn-close-chat" (click)="toggleWindow()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="welcome-message" [class.hidden]="chats().length > 0">
+        <i class="bi bi-robot welcome-icon"></i>
+        <h4>Ola! sou seu assistente financeiro</h4>
+        <p>Posso ajudar voce a:</p>
+        <div class="quick-actions">
+          <button class="quick-btn" (click)="sendQuickPrompt('Liste minhas despesas este mes')">
+            <i class="bi bi-receipt"></i> Ver despesas
+          </button>
+          <button class="quick-btn" (click)="sendQuickPrompt('Qual meu saldo atual?')">
+            <i class="bi bi-wallet2"></i> Ver saldo
+          </button>
+          <button class="quick-btn" (click)="sendQuickPrompt('Cadastre uma despesa de 100')">
+            <i class="bi bi-plus-circle"></i> Nova despesa
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-messages" #chatWindow>
+        @for (message of chats(); track $index) {
+          @if (message.origin == 'user') {
+            <div class="message user">
+              <div class="message-content">
+                {{ message.content }}
+              </div>
+              <i class="bi bi-person-circle user-avatar"></i>
+            </div>
+          } @else {
+            <div class="message bot">
+              <i class="bi bi-cash-stack bot-avatar"></i>
+              <div class="message-content">
+                <markdown [data]="message.content"></markdown>
+              </div>
+            </div>
+          }
+        }
+        @if (isLoading) {
           <div class="message bot">
-            <img class="message-avatar" src="cashflow-logo.jpg" alt="bot" />
-            <div class="message-content">
-              <markdown [data]="message.content"></markdown>
+            <i class="bi bi-cash-stack bot-avatar"></i>
+            <div class="message-content typing">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
             </div>
           </div>
         }
-      }
-    </div>
-    <form #f="ngForm" novalidate>
-      <div class="chat-input">
-        <textarea
-          type="text"
-          name="userMessage"
-          class="input-field"
-          rows="1"
-          ngModel
-        ></textarea>
-        <button class="send-button" (click)="submitMessage(f)">
-          <i class="bi bi-send-fill" style="color: white"></i>
-        </button>
       </div>
-    </form>
-  </div>
+
+      <form #f="ngForm" novalidate (submit)="submitMessage(f)">
+        <div class="chat-input">
+          <input
+            type="text"
+            name="userMessage"
+            class="input-field"
+            placeholder="Digite sua mensagem..."
+            autocomplete="off"
+            ngModel
+          />
+          <button type="submit" class="send-button" [disabled]="isLoading">
+            <i class="bi bi-send"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  }
 </div>
