@@ -12,7 +12,7 @@
         [class.positive]="totalCashFlow() >= 0"
         [class.negative]="totalCashFlow() < 0"
       >
-        {{ totalCashFlow() | currency: "BRL" }}
+        {{ totalCashFlow() | currency: 'BRL' }}
       </span>
     </div>
   }
