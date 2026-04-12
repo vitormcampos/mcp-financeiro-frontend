@@ -109,6 +109,19 @@
   color: #fca5a5;
 }
 
+.btn-theme {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.btn-theme:hover {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
 .btn-register {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #fff;

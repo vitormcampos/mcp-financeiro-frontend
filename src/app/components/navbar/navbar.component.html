@@ -18,6 +18,10 @@
   }
 
   <div class="nav-actions">
+    <button class="nav-link btn-theme" (click)="toggleTheme()" [title]="isDarkMode() ? 'Modo claro' : 'Modo escuro'">
+      <i class="bi" [class]="isDarkMode() ? 'bi-sun' : 'bi-moon'"></i>
+    </button>
+
     @if (userIsLoggedIn()) {
       <a routerLink="dashboard" class="nav-link" routerLinkActive="active">
         <i class="bi bi-grid-1x2"></i>
