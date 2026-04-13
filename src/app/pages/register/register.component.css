@@ -1,9 +1,31 @@
 .register-container {
   min-height: calc(100vh - 80px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+
+.register-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 2rem;
+  color: #22c55e;
+}
+
+.register-logo i {
+  font-size: 2.5rem;
+}
+
+.register-logo span {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .register-card {

@@ -134,6 +134,10 @@
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 20px 30px;
+  }
+
   .navbar-container {
     padding: 0.75rem 1rem;
     flex-wrap: wrap;
@@ -163,5 +167,13 @@
 
   .nav-link {
     padding: 0.5rem 0.75rem;
+  }
+
+  .btn-login span {
+    display: inline;
+  }
+
+  .btn-register {
+    display: none;
   }
 }
