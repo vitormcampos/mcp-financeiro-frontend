@@ -10,7 +10,7 @@
       Login
     </h2>
 
-    @if (loginFormGroup.hasError('invalidCredentials')) {
+    @if (loginFormGroup.hasError("invalidCredentials")) {
       <div class="alert alert-danger" role="alert">
         <i class="bi bi-exclamation-triangle"></i>
         Usuário ou senha inválidos.
@@ -19,17 +19,17 @@
 
     <form [formGroup]="loginFormGroup">
       <div class="mb-3">
-        <label for="username" class="form-label">Usuário</label>
+        <label for="username" class="form-label">Usuário ou Email</label>
         <input
           type="text"
           id="username"
           class="form-control"
           formControlName="username"
-          placeholder="Digite seu usuário"
+          placeholder="Digite seu usuário ou email"
         />
         @if (
-          loginFormGroup.get('username')?.touched &&
-          loginFormGroup.get('username')?.invalid
+          loginFormGroup.get("username")?.touched &&
+          loginFormGroup.get("username")?.invalid
         ) {
           <div class="text-danger">Usuário é obrigatório.</div>
         }
@@ -45,8 +45,8 @@
           placeholder="Digite sua senha"
         />
         @if (
-          loginFormGroup.get('password')?.touched &&
-          loginFormGroup.get('password')?.invalid
+          loginFormGroup.get("password")?.touched &&
+          loginFormGroup.get("password")?.invalid
         ) {
           <div class="text-danger">Senha é obrigatória.</div>
         }

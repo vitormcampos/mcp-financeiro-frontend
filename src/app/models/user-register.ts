@@ -1,5 +1,6 @@
-export class UserRegister {
-  username: string | null | undefined;
-  password: string | null | undefined;
-  confirmPassword: string | null | undefined;
-}
+export type UserRegister = {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};

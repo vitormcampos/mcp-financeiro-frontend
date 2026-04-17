@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserRegister } from '../../models/user-register';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -16,14 +16,18 @@ export class RegisterComponent {
   private readonly authService = inject(AuthService);
 
   registerFormGroup = this.formBuilder.group({
-    username: [''],
-    password: [''],
-    confirmPassword: [''],
+    username: ['', { validators: [Validators.required] }],
+    email: ['', { validators: [Validators.required, Validators.email] }],
+    password: [
+      '',
+      { validators: [Validators.required, Validators.minLength(6)] },
+    ],
+    confirmPassword: ['', { validators: [Validators.required] }],
   });
 
   submit() {
     if (this.registerFormGroup.valid) {
-      const user: Partial<UserRegister> = this.registerFormGroup.value;
+      const user = this.registerFormGroup.value;
 
       this.authService.register(user as UserRegister).subscribe({
         next: () => {

@@ -21,10 +21,27 @@
           placeholder="Digite seu usuário"
         />
         @if (
-          registerFormGroup.get('username')?.touched &&
-          registerFormGroup.get('username')?.invalid
+          registerFormGroup.get("username")?.touched &&
+          registerFormGroup.get("username")?.invalid
         ) {
           <div class="text-danger">Usuário é obrigatório.</div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Digite seu email"
+        />
+        @if (
+          registerFormGroup.get("email")?.touched &&
+          registerFormGroup.get("email")?.invalid
+        ) {
+          <div class="text-danger">Email é obrigatório.</div>
         }
       </div>
 
@@ -38,8 +55,8 @@
           placeholder="Digite sua senha"
         />
         @if (
-          registerFormGroup.get('password')?.touched &&
-          registerFormGroup.get('password')?.invalid
+          registerFormGroup.get("password")?.touched &&
+          registerFormGroup.get("password")?.invalid
         ) {
           <div class="text-danger">Senha é obrigatória.</div>
         }
@@ -55,8 +72,8 @@
           placeholder="Digite sua senha novamente"
         />
         @if (
-          registerFormGroup.get('confirmPassword')?.touched &&
-          registerFormGroup.get('confirmPassword')?.invalid
+          registerFormGroup.get("confirmPassword")?.touched &&
+          registerFormGroup.get("confirmPassword")?.invalid
         ) {
           <div class="text-danger">Confirmação de senha é obrigatória.</div>
         }
