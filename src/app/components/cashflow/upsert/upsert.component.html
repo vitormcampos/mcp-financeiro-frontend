@@ -9,54 +9,114 @@
     ></button>
   </div>
   <div class="modal-body">
-    <form #f="ngForm" novalidate>
-      <input
-        class="form-control"
-        name="description"
-        ngModel
-        required
-        placeholder="Conta de Luz"
-      />
-      <input
-        class="form-control"
-        name="amount"
-        type="number"
-        ngModel
-        required
-        placeholder="200"
-      />
-      <select
-        class="form-select"
-        name="status"
-        ngModel
-        aria-label="Default select example"
-        required
-      >
-        <option value="">Selecione uma opção</option>
-        @for (status of expectedStatuses; track $index) {
-          <option [value]="status[0]">
-            {{ status[1] }}
-          </option>
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <input
+          class="form-control"
+          formControlName="description"
+          placeholder="Conta de Luz"
+          [class.is-invalid]="
+            form.get('description')?.invalid && form.get('description')?.touched
+          "
+        />
+        @if (
+          form.get("description")?.invalid && form.get("description")?.touched
+        ) {
+          <div class="invalid-feedback">Descrição é obrigatória</div>
         }
-      </select>
-      <select
-        class="form-select"
-        name="type"
-        ngModel
-        aria-label="Default select example"
-        required
-      >
-        <option value="">Selecione uma opção</option>
-        @for (type of expectedTypes; track $index) {
-          <option [value]="type[0]">
-            {{ type[1] }}
-          </option>
+      </div>
+      <div class="mb-3">
+        <input
+          class="form-control"
+          formControlName="amount"
+          type="number"
+          placeholder="200"
+          [class.is-invalid]="
+            form.get('amount')?.invalid && form.get('amount')?.touched
+          "
+        />
+        @if (form.get("amount")?.invalid && form.get("amount")?.touched) {
+          <div class="invalid-feedback">Valor é obrigatório</div>
         }
-      </select>
+      </div>
+      <div class="mb-3">
+        <select
+          class="form-select"
+          formControlName="status"
+          aria-label="Default select example"
+          [class.is-invalid]="
+            form.get('status')?.invalid && form.get('status')?.touched
+          "
+        >
+          <option value="">Selecione uma opção</option>
+          @for (status of expectedStatuses; track $index) {
+            <option [value]="status[0]">
+              {{ status[1] }}
+            </option>
+          }
+        </select>
+        @if (form.get("status")?.invalid && form.get("status")?.touched) {
+          <div class="invalid-feedback">Status é obrigatório</div>
+        }
+      </div>
+      <div class="mb-3">
+        <select
+          class="form-select"
+          formControlName="type"
+          aria-label="Default select example"
+          [class.is-invalid]="
+            form.get('type')?.invalid && form.get('type')?.touched
+          "
+        >
+          <option value="">Selecione uma opção</option>
+          @for (type of expectedTypes; track $index) {
+            <option [value]="type[0]">
+              {{ type[1] }}
+            </option>
+          }
+        </select>
+        @if (form.get("type")?.invalid && form.get("type")?.touched) {
+          <div class="invalid-feedback">Tipo é obrigatório</div>
+        }
+      </div>
+      <div class="row">
+        <div class="col-6 mb-3">
+          <input
+            class="form-control"
+            formControlName="month"
+            type="number"
+            min="1"
+            max="12"
+            placeholder="Mês (1-12)"
+            [class.is-invalid]="
+              form.get('month')?.invalid && form.get('month')?.touched
+            "
+          />
+          @if (form.get("month")?.invalid && form.get("month")?.touched) {
+            <div class="invalid-feedback">Mês inválido (1-12)</div>
+          }
+        </div>
+        <div class="col-6 mb-3">
+          <input
+            class="form-control"
+            formControlName="year"
+            type="number"
+            min="2000"
+            max="2100"
+            placeholder="Ano"
+            [class.is-invalid]="
+              form.get('year')?.invalid && form.get('year')?.touched
+            "
+          />
+          @if (form.get("year")?.invalid && form.get("year")?.touched) {
+            <div class="invalid-feedback">Ano inválido</div>
+          }
+        </div>
+      </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="submit(f)">
+    <button type="button" class="btn btn-outline-secondary" (click)="submit()">
       Salvar
     </button>
   </div>

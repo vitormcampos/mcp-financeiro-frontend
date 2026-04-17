@@ -42,6 +42,8 @@ export class CashFlowService {
     amount: number;
     type: string;
     status: string;
+    month: number;
+    year: number;
   }) {
     return this.httpClient.post<CashFlow>(this.baseUrl, cashFlow, {
       headers: this.headers,

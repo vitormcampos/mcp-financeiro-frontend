@@ -9,6 +9,8 @@ export class CashFlow {
   description?: string;
   amount: number = 0;
   type?: 'INCOME' | 'EXPENSE' | 'INVESTMENT';
+  month?: number;
+  year?: number;
 
   get status(): CashFlowStatus | undefined {
     return this._status;
